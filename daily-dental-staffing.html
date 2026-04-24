@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Dental Staffing, LLC – Las Vegas, Nevada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2035;
+      --teal: #1a7f7a;
+      --teal-light: #25b0a9;
+      --cream: #f6f2eb;
+      --gold: #c8a85a;
+      --white: #ffffff;
+      --text: #1e2d3d;
+      --muted: #607080;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(15, 32, 53, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,168,90,0.18);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .logo-icon { width: 42px; height: 42px; background: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .logo-text { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1rem; line-height: 1.2; }
+    .logo-text span { color: var(--gold); display: block; font-size: 0.75rem; font-style: italic; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.78); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--teal) !important; color: #fff !important; padding: 0.55rem 1.3rem; border-radius: 50px; }
+    .nav-cta:hover { background: var(--teal-light) !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+    .hero-left { background: var(--navy); display: flex; align-items: center; padding: 140px 5% 100px 7%; position: relative; z-index: 2; }
+    .hero-left::after { content: ''; position: absolute; top: 0; right: -60px; bottom: 0; width: 120px; background: var(--navy); clip-path: polygon(0 0, 0% 100%, 100% 100%); z-index: 3; }
+    .hero-bg-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 20% 60%, rgba(26,127,122,0.25) 0%, transparent 70%); }
+    .hero-content { position: relative; z-index: 4; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(200,168,90,0.15); border: 1px solid rgba(200,168,90,0.4); color: var(--gold); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.8rem; animation: fadeUp 0.8s ease both; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.6rem); color: var(--white); line-height: 1.14; margin-bottom: 1.4rem; animation: fadeUp 0.8s 0.15s ease both; }
+    .hero h1 em { color: var(--teal-light); font-style: italic; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.68); line-height: 1.8; max-width: 480px; margin-bottom: 2.5rem; animation: fadeUp 0.8s 0.3s ease both; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.45s ease both; }
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(0.72) saturate(1.1); }
+    .hero-right-overlay { position: absolute; inset: 0; background: linear-gradient(to right, var(--navy) 0%, transparent 35%), linear-gradient(to top, rgba(15,32,53,0.55) 0%, transparent 40%); }
+    .hero-stats-bar { position: absolute; bottom: 0; left: 0; right: 0; display: flex; background: rgba(15,32,53,0.9); backdrop-filter: blur(12px); border-top: 1px solid rgba(200,168,90,0.2); z-index: 10; }
+    .hero-stat { flex: 1; padding: 1.4rem; text-align: center; border-right: 1px solid rgba(255,255,255,0.07); }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); display: block; }
+    .hero-stat .lbl { color: rgba(255,255,255,0.55); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; }
+
+    /* BUTTONS */
+    .btn-primary { background: var(--teal); color: #fff; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.93rem; transition: all 0.25s; box-shadow: 0 4px 20px rgba(26,127,122,0.4); display: inline-block; }
+    .btn-primary:hover { background: var(--teal-light); transform: translateY(-2px); }
+    .btn-outline { border: 1.5px solid rgba(255,255,255,0.35); color: #fff; padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.25s; display: inline-block; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* PHOTO STRIP */
+    .photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); height: 230px; overflow: hidden; }
+    .strip-photo { overflow: hidden; position: relative; }
+    .strip-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.78) saturate(1.1); }
+    .strip-photo:hover img { transform: scale(1.07); filter: brightness(0.9); }
+    .strip-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,32,53,0.85), transparent); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 1.2rem 1.2rem 0.7rem; }
+
+    /* SECTIONS */
+    section { padding: 100px 5%; }
+    .section-label { display: inline-block; color: var(--teal); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.8rem); color: var(--navy); line-height: 1.2; margin-bottom: 1.2rem; }
+    .section-title em { color: var(--teal); font-style: italic; }
+    .section-sub { color: var(--muted); font-size: 1.02rem; line-height: 1.75; max-width: 560px; }
+
+    /* ABOUT */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-photos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 260px 180px; gap: 12px; position: relative; }
+    .about-photos .photo-main { grid-column: 1 / -1; border-radius: 20px; overflow: hidden; }
+    .about-photos .photo-sub { border-radius: 16px; overflow: hidden; }
+    .about-photos img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .about-photos .photo-main:hover img, .about-photos .photo-sub:hover img { transform: scale(1.04); }
+    .about-badge-float { position: absolute; bottom: -20px; right: -20px; background: var(--gold); border-radius: 20px; padding: 1.3rem 1.6rem; text-align: center; box-shadow: 0 12px 40px rgba(200,168,90,0.4); z-index: 5; }
+    .about-badge-float strong { display: block; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); }
+    .about-badge-float span { font-size: 0.78rem; color: var(--navy); opacity: 0.75; font-weight: 500; }
+    .about-text .section-sub { max-width: 100%; }
+    .check-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .check-list li { display: flex; align-items: center; gap: 0.9rem; color: var(--text); font-size: 0.95rem; }
+    .check-list li::before { content: '✓'; min-width: 26px; height: 26px; background: rgba(26,127,122,0.12); color: var(--teal); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
+
+    /* SERVICES */
+    #services { background: var(--cream); }
+    .services-header { text-align: center; margin-bottom: 4rem; }
+    .services-header .section-sub { margin: 0 auto; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .service-card { background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid rgba(15,32,53,0.07); transition: all 0.35s; }
+    .service-card:hover { transform: translateY(-8px); box-shadow: 0 24px 55px rgba(15,32,53,0.13); }
+    .sc-img { height: 185px; overflow: hidden; position: relative; }
+    .sc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; filter: brightness(0.82) saturate(1.1); }
+    .service-card:hover .sc-img img { transform: scale(1.07); }
+    .sc-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,32,53,0.45), transparent 60%); }
+    .sc-body { padding: 1.8rem; }
+    .sc-icon { width: 50px; height: 50px; background: rgba(26,127,122,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 0.7rem; }
+    .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+    /* DENTISTS */
+    #dentists { background: var(--navy); padding: 0; }
+    .dentists-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
+    .dentists-photo { position: relative; overflow: hidden; }
+    .dentists-photo img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65) saturate(1.1); }
+    .dentists-photo-overlay { position: absolute; inset: 0; background: linear-gradient(to right, transparent 55%, var(--navy) 100%), linear-gradient(to bottom, transparent 60%, rgba(15,32,53,0.6) 100%); }
+    .dentists-content { padding: 80px 7% 80px 5%; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+    #dentists .section-title { color: var(--white); }
+    #dentists .section-sub { color: rgba(255,255,255,0.65); }
+    .dq-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .dq-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 12px; padding: 1rem 1.3rem; display: flex; align-items: flex-start; gap: 0.8rem; color: rgba(255,255,255,0.78); font-size: 0.9rem; line-height: 1.5; transition: background 0.2s; }
+    .dq-item:hover { background: rgba(255,255,255,0.09); }
+    .dq-dot { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+    .dentists-cta { margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .contact-tel { color: rgba(255,255,255,0.65); font-size: 0.88rem; text-decoration: none; }
+    .contact-tel strong { display: block; color: var(--white); font-size: 1rem; }
+
+    /* PROFESSIONALS */
+    #professionals { background: var(--cream); padding: 0; }
+    .professionals-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
+    .professionals-content { padding: 80px 5% 80px 7%; display: flex; flex-direction: column; justify-content: center; background: var(--white); }
+    .professionals-photo-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .prof-photo { overflow: hidden; position: relative; }
+    .prof-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; filter: brightness(0.8); }
+    .prof-photo:hover img { transform: scale(1.06); filter: brightness(0.9); }
+    .prof-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(15,32,53,0.85), transparent); color: #fff; padding: 1.2rem 1.1rem 0.7rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* TESTIMONIAL */
+    .testimonial-band { background: var(--teal); padding: 65px 5%; text-align: center; position: relative; overflow: hidden; }
+    .testimonial-band::before { content: '"'; position: absolute; top: -20px; left: 5%; font-family: 'Playfair Display', serif; font-size: 14rem; color: rgba(255,255,255,0.06); line-height: 1; }
+    .testimonial-band blockquote { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 3vw, 1.75rem); color: var(--white); max-width: 780px; margin: 0 auto 1.5rem; line-height: 1.55; font-style: italic; position: relative; z-index: 2; }
+    .testimonial-band cite { color: rgba(255,255,255,0.7); font-size: 0.87rem; font-style: normal; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* CONTACT */
+    #contact { background: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .contact-photo-wrap { border-radius: 20px; overflow: hidden; height: 280px; margin-bottom: 2rem; }
+    .contact-photo-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82) saturate(1.1); transition: transform 0.5s ease; }
+    .contact-photo-wrap:hover img { transform: scale(1.04); }
+    .contact-info-items { display: flex; flex-direction: column; gap: 1.6rem; }
+    .contact-item { display: flex; gap: 1.1rem; align-items: flex-start; }
+    .ci-icon { width: 46px; height: 46px; background: rgba(26,127,122,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .contact-item h4 { font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; font-size: 0.93rem; }
+    .contact-item p, .contact-item a { color: var(--muted); font-size: 0.88rem; text-decoration: none; line-height: 1.6; }
+    .contact-item a:hover { color: var(--teal); }
+    .contact-form-box { background: var(--cream); border-radius: 24px; padding: 2.8rem; }
+    .contact-form-box h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .contact-form-box > p { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; letter-spacing: 0.02em; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1.1rem; border: 1.5px solid rgba(15,32,53,0.12); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--text); background: var(--white); transition: border-color 0.2s; outline: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-full { width: 100%; text-align: center; padding: 1rem; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; border-radius: 50px; background: var(--teal); color: #fff; transition: all 0.25s; box-shadow: 0 4px 20px rgba(26,127,122,0.35); }
+    .btn-full:hover { background: var(--teal-light); transform: translateY(-2px); }
+
+    /* LOCATION BAR */
+    .location-bar { background: var(--navy); padding: 50px 7%; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+    .location-bar-text h3 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.4rem; margin-bottom: 0.4rem; }
+    .location-bar-text p { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+    .location-detail { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .loc-item { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    .loc-item strong { display: block; color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .loc-item a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .loc-item a:hover { color: var(--gold); }
+
+    /* FOOTER */
+    footer { background: #080f18; padding: 4rem 5% 2.5rem; border-top: 1px solid rgba(200,168,90,0.12); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.87rem; line-height: 1.75; max-width: 320px; margin: 1rem 0 1.5rem; }
+    .footer-fb { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.84rem; border: 1px solid rgba(255,255,255,0.13); padding: 0.5rem 1rem; border-radius: 50px; transition: all 0.2s; }
+    .footer-fb:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col h4 { color: var(--gold); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .footer-col ul a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { color: rgba(255,255,255,0.35); font-size: 0.81rem; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 55vw; }
+      .hero-left::after { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .dentists-inner, .professionals-inner { grid-template-columns: 1fr; }
+      .dentists-photo, .professionals-photo-grid { height: 320px; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .photo-strip { grid-template-columns: 1fr 1fr; height: 360px; }
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .location-bar { flex-direction: column; align-items: flex-start; }
+      .about-badge-float { right: 0; bottom: -16px; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .photo-strip { grid-template-columns: 1fr 1fr; height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">🦷</div>
+    <div class="logo-text">Daily Dental Staffing<span>Licensed Employment Agency</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#dentists">Dentistes</a></li>
+    <li><a href="#professionals">Professionnels</a></li>
+    <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🏆 &nbsp;Première agence dentaire exclusive du Nevada · Depuis 2004</div>
+      <h1>Le personnel dentaire <em>idéal</em>, quand vous en avez besoin</h1>
+      <p>Daily Dental Staffing, LLC est une agence d'emploi agréée spécialisée dans le recrutement de professionnels dentaires à Las Vegas et dans tout le Nevada — emploi temporaire ou permanent.</p>
+      <div class="hero-btns">
+        <a href="#professionals" class="btn-primary">Je suis un professionnel</a>
+        <a href="#dentists" class="btn-outline">Je suis dentiste</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1000&q=85&fit=crop&crop=center" alt="Cabinet dentaire professionnel" loading="eager"/>
+    <div class="hero-right-overlay"></div>
+  </div>
+  <div class="hero-stats-bar">
+    <div class="hero-stat"><span class="num">30+</span><span class="lbl">Ans d'expérience</span></div>
+    <div class="hero-stat"><span class="num">2004</span><span class="lbl">Fondée à Las Vegas</span></div>
+    <div class="hero-stat"><span class="num">0 $</span><span class="lbl">Frais pour les pros</span></div>
+    <div class="hero-stat"><span class="num">NV</span><span class="lbl">Tout le Nevada</span></div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip">
+  <div class="strip-photo">
+    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&fit=crop&crop=top" alt="Dentiste au travail"/>
+    <div class="strip-label">Soins dentaires</div>
+  </div>
+  <div class="strip-photo">
+    <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&q=80&fit=crop" alt="Équipe dentaire"/>
+    <div class="strip-label">Équipe professionnelle</div>
+  </div>
+  <div class="strip-photo">
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffbb4d020b3?w=600&q=80&fit=crop" alt="Consultation dentaire"/>
+    <div class="strip-label">Consultation</div>
+  </div>
+  <div class="strip-photo">
+    <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80&fit=crop" alt="Accueil cabinet"/>
+    <div class="strip-label">Accueil & Administration</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photos">
+      <div class="photo-main">
+        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=900&q=85&fit=crop" alt="Cabinet dentaire Las Vegas" style="filter:brightness(0.9)"/>
+      </div>
+      <div class="photo-sub">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=450&q=80&fit=crop" alt="Professionnels dentaires"/>
+      </div>
+      <div class="photo-sub">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=450&q=80&fit=crop" alt="Recrutement dentaire" style="filter:brightness(0.88)"/>
+      </div>
+      <div class="about-badge-float">
+        <strong>20+</strong>
+        <span>ans de confiance</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-label">Notre histoire</span>
+      <h2 class="section-title">La première agence<br/><em>100 % dentaire</em> du Nevada</h2>
+      <p class="section-sub">Fondée en 2004 à Las Vegas, Nevada, Daily Dental Staffing, LLC a été la toute première agence locale à se consacrer exclusivement aux cabinets dentaires du Nevada du Sud. Notre équipe cumule plus de 30 ans d'expérience en recrutement dentaire.</p>
+      <ul class="check-list">
+        <li>Approche personnelle et professionnelle</li>
+        <li>Agence d'emploi officiellement agréée (Licensed Employment Agency)</li>
+        <li>Spécialisation exclusive dans le secteur dentaire</li>
+        <li>Plus de 30 ans d'expérience collective</li>
+        <li>Accès à des postes non publiés, exclusifs à notre réseau</li>
+        <li>Confidentialité stricte de tous les dossiers</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <span class="section-label">Ce que nous faisons</span>
+    <h2 class="section-title">Nos <em>services</em></h2>
+    <p class="section-sub">Des solutions flexibles pour les cabinets dentaires et les professionnels du secteur à travers tout le Nevada.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=700&q=80&fit=crop" alt="Remplacement temporaire"/><div class="sc-img-overlay"></div></div>
+      <div class="sc-body"><div class="sc-icon">⚡</div><h3>Placement temporaire</h3><p>Personnel disponible souvent en dernière minute. Remplacements d'une journée, semaine, ou pour congés maternité et vacances.</p></div>
+    </div>
+    <div class="service-card">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80&fit=crop" alt="Placement permanent"/><div class="sc-img-overlay"></div></div>
+      <div class="sc-body"><div class="sc-icon">🎯</div><h3>Placement permanent</h3><p>Nous trouvons le candidat idéal avec une garantie de 60 jours. Vérification des licences et entretiens organisés à votre convenance.</p></div>
+    </div>
+    <div class="service-card">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1551884170-09fb70a3a2ed?w=700&q=80&fit=crop" alt="Vérification candidats"/><div class="sc-img-overlay"></div></div>
+      <div class="sc-body"><div class="sc-icon">✅</div><h3>Vérification complète</h3><p>Chaque candidat est interviewé personnellement, ses licences et références vérifiées avant toute mise en relation.</p></div>
+    </div>
+    <div class="service-card">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?w=700&q=80&fit=crop" alt="Confidentialité"/><div class="sc-img-overlay"></div></div>
+      <div class="sc-body"><div class="sc-icon">🔒</div><h3>Confidentialité totale</h3><p>Toutes les informations des candidats et des cabinets sont strictement confidentielles, jamais divulguées sans accord exprès.</p></div>
+    </div>
+    <div class="service-card">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1486825586573-7131f7991bdd?w=700&q=80&fit=crop" alt="Postes exclusifs"/><div class="sc-img-overlay"></div></div>
+      <div class="sc-body"><div class="sc-icon">💼</div><h3>Postes non publiés</h3><p>Accès exclusif à des offres d'emploi introuvables ailleurs — uniquement disponibles via notre réseau de cabinets partenaires.</p></div>
+    </div>
+    <div class="service-card">
+      <div class="sc-img"><img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&q=80&fit=crop" alt="Sans frais"/><div class="sc-img-overlay"></div></div>
+      <div class="sc-body"><div class="sc-icon">🤝</div><h3>Aucuns frais cachés</h3><p>Aucun frais ni dépôt pour les professionnels dentaires. Tarif journalier fixe et transparent pour les remplacements.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR DENTISTS -->
+<section id="dentists">
+  <div class="dentists-inner">
+    <div class="dentists-photo">
+      <img src="https://images.unsplash.com/photo-1609207925906-eefb9dcd7a26?w=900&q=85&fit=crop&crop=top" alt="Dentiste dans son cabinet"/>
+      <div class="dentists-photo-overlay"></div>
+    </div>
+    <div class="dentists-content">
+      <span class="section-label" style="color:var(--teal-light);">Pour les cabinets dentaires</span>
+      <h2 class="section-title">Pratiquez la dentisterie,<br/><em>laissez-nous gérer le reste</em></h2>
+      <p class="section-sub">Vous êtes fatigué de chercher du personnel qualifié en urgence ? Nous avons des professionnels disponibles souvent le jour même, sans frais ni engagement.</p>
+      <div class="dq-list">
+        <div class="dq-item"><span class="dq-dot">→</span>Vous souhaitez vous concentrer sur vos patients sans gérer le personnel ?</div>
+        <div class="dq-item"><span class="dq-dot">→</span>Un employé vient d'appeler malade — besoin d'un remplaçant urgent ?</div>
+        <div class="dq-item"><span class="dq-dot">→</span>Un hygiéniste à temps partiel améliorerait votre cabinet ?</div>
+        <div class="dq-item"><span class="dq-dot">→</span>Vous pensez que les professionnels qualifiés sont difficiles à trouver ?</div>
+      </div>
+      <div class="dentists-cta">
+        <a href="#contact" class="btn-primary">Devenir client — 0 $ d'engagement</a>
+        <a href="tel:7024565836" class="contact-tel">Appeler Leslie<strong>(702) 456-5836</strong></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONALS -->
+<section id="professionals">
+  <div class="professionals-inner">
+    <div class="professionals-content">
+      <span class="section-label">Pour les professionnels dentaires</span>
+      <h2 class="section-title">Prenez le contrôle de<br/><em>votre carrière</em></h2>
+      <p class="section-sub">Daily Dental Staffing ne vous facture jamais aucun frais. Travaillez quand vous voulez, ou trouvez un poste stable — nous avons les deux.</p>
+      <ul class="check-list" style="margin-top:1.8rem;">
+        <li>Aucun frais pour les professionnels dentaires</li>
+        <li>Flexibilité totale — choisissez vos horaires</li>
+        <li>Paiement direct par le cabinet en fin de mission</li>
+        <li>Missions courtes : 1 jour, 1 semaine, remplacement congé</li>
+        <li>Postes permanents pour plus de stabilité</li>
+        <li>Accès à des offres exclusives non publiées</li>
+        <li>Confidentialité totale de votre dossier</li>
+      </ul>
+      <div style="margin-top:2.2rem;">
+        <a href="#contact" class="btn-primary">Soumettre mon profil gratuitement</a>
+      </div>
+    </div>
+    <div class="professionals-photo-grid">
+      <div class="prof-photo"><img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=500&q=80&fit=crop&crop=top" alt="Assistante dentaire"/><div class="prof-label">Assistants dentaires</div></div>
+      <div class="prof-photo"><img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=500&q=80&fit=crop" alt="Hygiéniste dentaire"/><div class="prof-label">Hygiénistes</div></div>
+      <div class="prof-photo"><img src="https://images.unsplash.com/photo-1580281658626-dc6e04c0e3ea?w=500&q=80&fit=crop" alt="Réceptionniste cabinet"/><div class="prof-label">Administratif & Accueil</div></div>
+      <div class="prof-photo"><img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=500&q=80&fit=crop" alt="Facturation assurance"/><div class="prof-label">Facturation assurance</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-band">
+  <blockquote>"Daily Dental Staffing nous a toujours fourni des professionnels qualifiés et fiables, même en dernière minute. C'est la tranquillité d'esprit absolue pour notre cabinet."</blockquote>
+  <cite>— Cabinet dentaire partenaire · Henderson, Nevada</cite>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <span class="section-label">Contactez-nous</span>
+      <h2 class="section-title">Parlons de<br/><em>votre projet</em></h2>
+      <p class="section-sub" style="margin-bottom:2rem;">Si vous ne recevez pas de réponse dans les 7 jours, n'hésitez pas à nous appeler directement.</p>
+      <div class="contact-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=800&q=85&fit=crop" alt="Henderson Nevada"/>
+      </div>
+      <div class="contact-info-items">
+        <div class="contact-item">
+          <div class="ci-icon">📍</div>
+          <div>
+            <h4>Adresse postale</h4>
+            <p>1452 W. Horizon Ridge Parkway #133<br/>Henderson, Nevada 89012</p>
+            <p style="font-size:0.8rem;margin-top:0.3rem;color:var(--gold);font-weight:600;">Sur rendez-vous uniquement</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">📞</div>
+          <div><h4>Téléphone — Leslie</h4><a href="tel:7024565836">(702) 456-5836</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon">✉️</div>
+          <div><h4>Email</h4><a href="mailto:info@dailydentalstaffing.com">info@dailydentalstaffing.com</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-box">
+      <h3>Envoyez-nous un message</h3>
+      <p>Remplissez ce formulaire et nous vous répondrons rapidement.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jane"/></div>
+        <div class="form-group"><label>Nom</label><input type="text" placeholder="Doe"/></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="jane@exemple.com"/></div>
+      <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="(702) 000-0000"/></div>
+      <div class="form-group">
+        <label>Je suis…</label>
+        <select>
+          <option value="">Sélectionnez votre profil</option>
+          <option>Un professionnel dentaire (assistant, hygiéniste…)</option>
+          <option>Un cabinet dentaire / dentiste</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Décrivez vos besoins ou votre situation…"></textarea></div>
+      <button class="btn-full" onclick="alert('Merci ! Nous vous contacterons très bientôt.')">Envoyer le message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION BAR -->
+<div class="location-bar">
+  <div class="location-bar-text">
+    <h3>Daily Dental Staffing, LLC</h3>
+    <p>Henderson · Las Vegas · Nevada du Sud</p>
+  </div>
+  <div class="location-detail">
+    <div class="loc-item"><strong>Adresse</strong>1452 W. Horizon Ridge Pkwy #133<br/>Henderson, NV 89012</div>
+    <div class="loc-item"><strong>Téléphone</strong><a href="tel:7024565836">(702) 456-5836</a></div>
+    <div class="loc-item"><strong>Email</strong><a href="mailto:info@dailydentalstaffing.com">info@dailydentalstaffing.com</a></div>
+    <div class="loc-item"><strong>Rendez-vous</strong>Sur rendez-vous uniquement</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="font-family:'Playfair Display',serif;color:#fff;font-size:1.2rem;">Daily Dental Staffing, LLC</div>
+      <p>Agence d'emploi dentaire agréée, spécialisée dans le recrutement de professionnels dentaires temporaires et permanents dans tout le Nevada depuis 2004.</p>
+      <a href="https://www.facebook.com/dailydentalstaffing" class="footer-fb" target="_blank">📘 &nbsp;Suivez-nous sur Facebook</a>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#dentists">Pour les dentistes</a></li>
+        <li><a href="#professionals">Pour les professionnels</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:7024565836">(702) 456-5836</a></li>
+        <li><a href="mailto:info@dailydentalstaffing.com">info@...</a></li>
+        <li><a href="#">Henderson, NV 89012</a></li>
+        <li><a href="#">Sur rendez-vous</a></li>
+        <li><a href="https://www.facebook.com/dailydentalstaffing" target="_blank">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2004–2026 Daily Dental Staffing, LLC. Tous droits réservés.</p>
+    <p>Las Vegas · Henderson · Nevada</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.service-card, .dq-item, .contact-item, .check-list li, .prof-photo, .strip-photo').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = `opacity 0.5s ${i * 0.06}s ease, transform 0.5s ${i * 0.06}s ease`;
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
